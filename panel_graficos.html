@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Panel de gráficos CONEVAL</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+        // Gráfico 1 - Evolución de pobreza
+        var data1 = google.visualization.arrayToDataTable([
+          ['Año', 'Pobreza', 'No pobreza'],
+          ['2008', 44.4, 55.6],
+          ['2010', 46.1, 53.9],
+          ['2012', 45.5, 54.5],
+          ['2014', 46.2, 53.8],
+          ['2016', 43.6, 56.4],
+          ['2018', 41.9, 58.1]
+        ]);
+        var options1 = {
+          title: 'Evolución de la pobreza en México',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+        chart1.draw(data1, options1);
+
+        // Gráfico 2 - Carencias sociales
+        var data2 = google.visualization.arrayToDataTable([
+          ['Carencia', 'Porcentaje'],
+          ['Rezago educativo', 24.2],
+          ['Acceso a servicios de salud', 16.2],
+          ['Acceso a seguridad social', 26.4],
+          ['Calidad y espacios de la vivienda', 16.1],
+          ['Servicios básicos en la vivienda', 10.5],
+          ['Acceso a la alimentación', 4.1]
+        ]);
+        var options2 = { title: 'Carencias sociales en 2018' };
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart2.draw(data2, options2);
+
+        // Gráfico 3 - Pobreza extrema
+        var data3 = google.visualization.arrayToDataTable([
+          ['Año', 'Pobreza extrema'],
+          ['2008', 11.5],
+          ['2010', 11.5],
+          ['2012', 11.5],
+          ['2014', 11.7],
+          ['2016', 11.1],
+          ['2018', 9.0]
+        ]);
+        var options3 = { title: 'Pobreza extrema (2008-2018)', legend: { position: 'bottom' } };
+        var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+        chart3.draw(data3, options3);
+
+        // Gráfico 4 - Pobreza por estado
+        var data4 = google.visualization.arrayToDataTable([
+          ['Estado', 'Pobreza'],
+          ['Chiapas', 76.4],
+          ['Guerrero', 70.4],
+          ['Oaxaca', 68.8],
+          ['Veracruz', 64.5],
+          ['Puebla', 61.2]
+        ]);
+        var options4 = {
+          title: 'Pobreza por estado (2018)',
+          chartArea: {width: '50%'},
+          hAxis: { title: 'Porcentaje', minValue: 0 },
+          vAxis: { title: 'Estado' }
+        };
+        var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
+        chart4.draw(data4, options4);
+
+        // Gráfico 5 - Carencias acumuladas
+        var data5 = google.visualization.arrayToDataTable([
+          ['Carencias acumuladas', 'Porcentaje'],
+          ['0', 43.6],
+          ['1', 17.4],
+          ['2', 15.2],
+          ['3', 9.2],
+          ['4', 5.5],
+          ['5', 3.6],
+          ['6', 2.3],
+          ['7', 1.6],
+          ['8', 1.0],
+          ['9', 0.6],
+          ['10', 0.3]
+        ]);
+        var options5 = { title: 'Número de carencias sociales acumuladas (2018)', legend: { position: 'none' } };
+        var chart5 = new google.visualization.ColumnChart(document.getElementById('chart_div5'));
+        chart5.draw(data5, options5);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Panel de gráficos de pobreza en México</h1>
+    <div id="chart_div1" style="width: 600px; height: 400px;"></div>
+    <div id="chart_div2" style="width: 600px; height: 400px;"></div>
+    <div id="chart_div3" style="width: 600px; height: 400px;"></div>
+    <div id="chart_div4" style="width: 600px; height: 400px;"></div>
+    <div id="chart_div5" style="width: 600px; height: 400px;"></div>
+  </body>
+</html>
